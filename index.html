@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轟炸基傳奇 - 陳鏞基 (Mayaw Ciru) 引退紀念特輯</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lions: {
+                            orange: '#F37021',
+                            dark: '#121212',
+                            gold: '#D4AF37',
+                            gray: '#1E1E1E',
+                            card: '#2A2A2A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #0d0d0d;
+            color: #E0E0E0;
+            overflow-x: hidden;
+        }
+        /* 捲動軸客製化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F37021;
+            border-radius: 4px;
+        }
+        /* 淡入動畫 */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between relative">
+
+    <!-- 背景粒子 Canvas -->
+    <canvas id="particleCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+
+    <div class="relative z-10">
+        <!-- 導覽列 -->
+        <nav class="sticky top-0 z-50 bg-lions-dark/90 backdrop-blur-md border-b border-lions-orange/30 shadow-lg">
+            <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+                <a href="#" class="text-xl md:text-2xl font-black text-lions-orange tracking-wider flex items-center gap-2">
+                    <span class="bg-lions-orange text-black px-2 py-0.5 rounded text-base font-bold shadow-md">13</span>
+                    陳鏞基 引退紀念
+                </a>
+                <div class="hidden md:flex space-x-6 text-sm font-bold">
+                    <a href="#article" class="hover:text-lions-orange transition">生平文章</a>
+                    <a href="#stats" class="hover:text-lions-orange transition">逐年數據</a>
+                    <a href="#photos" class="hover:text-lions-orange transition">紀念相片</a>
+                    <a href="#video" class="hover:text-lions-orange transition">引退影片</a>
+                    <a href="#map" class="hover:text-lions-orange transition">亞太球場</a>
+                    <a href="#comments" class="hover:text-lions-orange transition">球迷留言</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero 頁頭 Banner -->
+        <header class="relative bg-gradient-to-b from-black via-lions-dark to-black py-20 px-4 text-center border-b border-lions-orange/20 overflow-hidden">
+            <div class="max-w-4xl mx-auto relative z-10">
+                <span class="inline-block bg-lions-orange/20 text-lions-orange border border-lions-orange/50 text-xs md:text-sm font-bold px-4 py-1.5 rounded-full mb-4 shadow-inner">
+                    Mayaw Ciru ‧ 千安百轟百盜傳奇里程碑
+                </span>
+                <h1 class="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight drop-shadow-lg">
+                    轟炸基傳奇 <span class="text-lions-orange">陳鏞基</span>
+                </h1>
+                <p class="text-gray-300 text-lg md:text-2xl max-w-2xl mx-auto font-light leading-relaxed">
+                    「揮棒、奔跑與守備，感謝棒球帶給我的一切。」
+                </p>
+                <div class="mt-8 flex justify-center gap-4 text-sm font-bold">
+                    <a href="#stats" class="bg-lions-orange text-black px-6 py-3 rounded-lg hover:bg-orange-500 transition shadow-lg">查看逐年數據</a>
+                    <a href="#comments" class="bg-lions-card border border-lions-orange/40 text-white px-6 py-3 rounded-lg hover:bg-lions-orange/20 transition">留下引退祝福</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- 主內容區塊 -->
+        <main class="max-w-5xl mx-auto px-4 py-12 space-y-16">
+
+            <!-- 1. 生涯故事 -->
+            <section id="article" class="fade-in-section bg-lions-gray p-6 md:p-10 rounded-2xl border border-lions-orange/20 shadow-2xl">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-2.5 h-8 bg-lions-orange rounded-full"></div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">傳奇回顧：轟炸基的棒球歲月</h2>
+                </div>
+                
+                <div class="space-y-4 text-gray-300 leading-relaxed text-base md:text-lg">
+                    <p>
+                        來自臺東阿美族的陳鏞基（Mayaw Ciru），自幼展現極佳的棒球天賦。高苑工商時期即打出名堂，進入國立體院後更是國家隊的內野常客。2004 年開啟旅美生涯加入西雅圖水手隊，並在 2006 年代表中華隊出戰世界棒球經典賽（WBC）與洲際盃，與胡金龍共組名震一時的「金鏞連線」，強悍的長打能力更讓他贏得「台灣轟炸基」的美譽。
+                    </p>
+                    <p>
+                        2011 年返台加盟中華職棒統一 7-ELEVEn 獅隊，陳鏞基便成為球隊無可取代的靈魂核心。守備上不論是游擊、三壘或一壘，皆展現優異的安定感；打擊端更是屢次在關鍵時刻擊出致勝安打。生涯陸續達成「千安、百轟、百盜」的輝煌紀錄，並幫助統一獅奪下多次總冠軍。
+                    </p>
+                    <p>
+                        走過 16 個中華職棒球季與無數次傷痛復健，陳鏞基總是展現對棒球的極致熱愛與敬業態度。站在引退的舞台上，他感性表示：「熱愛棒球的心從來沒有停止過。感謝球員生涯遇到的每一個人，辛苦你了，陳鏞基。」他的精神與燦爛笑容，將永遠留在所有球迷心中。
+                    </p>
+                </div>
+            </section>
+
+            <!-- 2. CPBL 逐年成績統計表 (每一季完全獨立呈列) -->
+            <section id="stats" class="fade-in-section bg-lions-gray p-6 md:p-8 rounded-2xl border border-lions-orange/20 shadow-2xl">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-2.5 h-8 bg-lions-orange rounded-full"></div>
+                        <h2 class="text-2xl md:text-3xl font-bold text-white">中華職棒逐年打擊成績 (CPBL)</h2>
+                    </div>
+                    <span class="text-xs text-gray-400">（橫向滑動查看更多指標）</span>
+                </div>
+
+                <div class="overflow-x-auto rounded-xl border border-gray-800">
+                    <table class="w-full text-sm text-left text-gray-300">
+                        <thead class="text-xs uppercase bg-black text-lions-orange border-b border-gray-800">
+                            <tr>
+                                <th class="px-4 py-3">年度</th>
+                                <th class="px-4 py-3">球隊</th>
+                                <th class="px-4 py-3">出賽</th>
+                                <th class="px-4 py-3">打數</th>
+                                <th class="px-4 py-3">安打</th>
+                                <th class="px-4 py-3">全壘打</th>
+                                <th class="px-4 py-3">打點</th>
+                                <th class="px-4 py-3">盜壘</th>
+                                <th class="px-4 py-3">打擊率</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-800 bg-lions-card/50">
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2011</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">69</td><td class="px-4 py-2.5">286</td><td class="px-4 py-2.5">84</td><td class="px-4 py-2.5">7</td><td class="px-4 py-2.5">45</td><td class="px-4 py-2.5">5</td><td class="px-4 py-2.5 text-lions-gold">.313</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2012</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">104</td><td class="px-4 py-2.5">392</td><td class="px-4 py-2.5">107</td><td class="px-4 py-2.5">8</td><td class="px-4 py-2.5">57</td><td class="px-4 py-2.5">6</td><td class="px-4 py-2.5">.273</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2013</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">101</td><td class="px-4 py-2.5">385</td><td class="px-4 py-2.5">121</td><td class="px-4 py-2.5">9</td><td class="px-4 py-2.5">51</td><td class="px-4 py-2.5 text-lions-gold">18</td><td class="px-4 py-2.5 text-lions-gold">.314</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2014</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">100</td><td class="px-4 py-2.5">353</td><td class="px-4 py-2.5">111</td><td class="px-4 py-2.5">6</td><td class="px-4 py-2.5">54</td><td class="px-4 py-2.5">14</td><td class="px-4 py-2.5 text-lions-gold">.314</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2015</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">107</td><td class="px-4 py-2.5">342</td><td class="px-4 py-2.5">95</td><td class="px-4 py-2.5">14</td><td class="px-4 py-2.5">50</td><td class="px-4 py-2.5">16</td><td class="px-4 py-2.5">.278</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition bg-lions-orange/5"><td class="px-4 py-2.5 font-bold text-lions-orange">2016</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">99</td><td class="px-4 py-2.5">394</td><td class="px-4 py-2.5 font-bold text-lions-gold">129</td><td class="px-4 py-2.5 font-bold text-lions-gold">20</td><td class="px-4 py-2.5 font-bold text-lions-gold">95</td><td class="px-4 py-2.5">11</td><td class="px-4 py-2.5 text-lions-gold">.327</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2017</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5 font-bold text-lions-gold">111</td><td class="px-4 py-2.5">377</td><td class="px-4 py-2.5">115</td><td class="px-4 py-2.5">15</td><td class="px-4 py-2.5">69</td><td class="px-4 py-2.5">9</td><td class="px-4 py-2.5 text-lions-gold">.305</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2018</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">96</td><td class="px-4 py-2.5">306</td><td class="px-4 py-2.5">93</td><td class="px-4 py-2.5">12</td><td class="px-4 py-2.5">54</td><td class="px-4 py-2.5">8</td><td class="px-4 py-2.5 text-lions-gold">.304</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2019</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">85</td><td class="px-4 py-2.5">267</td><td class="px-4 py-2.5">85</td><td class="px-4 py-2.5">11</td><td class="px-4 py-2.5">44</td><td class="px-4 py-2.5">6</td><td class="px-4 py-2.5 text-lions-gold">.318</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition bg-lions-orange/5"><td class="px-4 py-2.5 font-bold text-lions-orange">2020</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">102</td><td class="px-4 py-2.5">306</td><td class="px-4 py-2.5">109</td><td class="px-4 py-2.5">14</td><td class="px-4 py-2.5">63</td><td class="px-4 py-2.5">10</td><td class="px-4 py-2.5 font-bold text-lions-gold">.356</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2021</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">84</td><td class="px-4 py-2.5">239</td><td class="px-4 py-2.5">48</td><td class="px-4 py-2.5">4</td><td class="px-4 py-2.5">28</td><td class="px-4 py-2.5">3</td><td class="px-4 py-2.5">.201</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2022</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">58</td><td class="px-4 py-2.5">159</td><td class="px-4 py-2.5">37</td><td class="px-4 py-2.5">1</td><td class="px-4 py-2.5">12</td><td class="px-4 py-2.5">2</td><td class="px-4 py-2.5">.233</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition bg-lions-orange/5"><td class="px-4 py-2.5 font-bold text-lions-orange">2023</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">86</td><td class="px-4 py-2.5">244</td><td class="px-4 py-2.5">82</td><td class="px-4 py-2.5">5</td><td class="px-4 py-2.5">48</td><td class="px-4 py-2.5">5</td><td class="px-4 py-2.5 font-bold text-lions-gold">.336</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2024</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">83</td><td class="px-4 py-2.5">252</td><td class="px-4 py-2.5">77</td><td class="px-4 py-2.5">5</td><td class="px-4 py-2.5">42</td><td class="px-4 py-2.5">3</td><td class="px-4 py-2.5 text-lions-gold">.306</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2025</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">55</td><td class="px-4 py-2.5">152</td><td class="px-4 py-2.5">42</td><td class="px-4 py-2.5">4</td><td class="px-4 py-2.5">25</td><td class="px-4 py-2.5">2</td><td class="px-4 py-2.5">.276</td></tr>
+                            <tr class="hover:bg-lions-orange/10 transition"><td class="px-4 py-2.5 font-bold">2026</td><td class="px-4 py-2.5">統一獅</td><td class="px-4 py-2.5">40</td><td class="px-4 py-2.5">94</td><td class="px-4 py-2.5">27</td><td class="px-4 py-2.5">1</td><td class="px-4 py-2.5">12</td><td class="px-4 py-2.5">1</td><td class="px-4 py-2.5">.287</td></tr>
+                        </tbody>
+                        <tfoot class="bg-black font-bold text-white border-t-2 border-lions-orange">
+                            <tr>
+                                <td class="px-4 py-3 text-lions-orange" colspan="2">生涯總計 (16年)</td>
+                                <td class="px-4 py-3">1376</td>
+                                <td class="px-4 py-3">4555</td>
+                                <td class="px-4 py-3 text-lions-gold">1380</td>
+                                <td class="px-4 py-3 text-lions-gold">137</td>
+                                <td class="px-4 py-3 text-lions-gold">779</td>
+                                <td class="px-4 py-3 text-lions-gold">120</td>
+                                <td class="px-4 py-3 text-lions-orange">.303</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 3. 精選照片 -->
+            <section id="photos" class="fade-in-section">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-2.5 h-8 bg-lions-orange rounded-full"></div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">紀念相片</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-lions-gray p-4 rounded-xl border border-lions-orange/20 text-center shadow-lg">
+                        <div class="h-80 md:h-96 w-full flex items-center justify-center bg-black/60 rounded-lg overflow-hidden mb-3 border border-gray-800">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmGX92KEsw7gAFijDDwHfWuioVqa2n8IpM0rUmxJ4l4g&s=10" 
+                                 alt="陳鏞基照片 1" 
+                                 class="max-h-full max-w-full object-contain hover:scale-105 transition duration-300">
+                        </div>
+                        <p class="text-sm text-gray-400">陳鏞基 國家隊與職棒經典英姿</p>
+                    </div>
+                    <div class="bg-lions-gray p-4 rounded-xl border border-lions-orange/20 text-center shadow-lg">
+                        <div class="h-80 md:h-96 w-full flex items-center justify-center bg-black/60 rounded-lg overflow-hidden mb-3 border border-gray-800">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxhhI0p_itgq4b2mj2V92bb1vPd59Rouy3_hVbqrv3oQ&s=10" 
+                                 alt="陳鏞基照片 2" 
+                                 class="max-h-full max-w-full object-contain hover:scale-105 transition duration-300">
+                        </div>
+                        <p class="text-sm text-gray-400">陳鏞基 招牌擊球動作</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. 嵌入影片 -->
+            <section id="video" class="fade-in-section">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-2.5 h-8 bg-lions-orange rounded-full"></div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">陳鏞基引退紀念影片</h2>
+                </div>
+                <div class="bg-lions-gray p-4 rounded-2xl border border-lions-orange/20 shadow-xl">
+                    <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-inner">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/GkUb3Gm4HBE" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="mt-3 text-right">
+                        <a href="https://www.youtube.com/watch?v=GkUb3Gm4HBE" target="_blank" rel="noopener noreferrer" class="text-xs text-lions-orange hover:underline">
+                            若影片無法播放，請點此開啟 YouTube 觀看 ↗
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. 亞太球場地圖 -->
+            <section id="map" class="fade-in-section">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-2.5 h-8 bg-lions-orange rounded-full"></div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white">引退儀式地點：臺南亞太國際棒球訓練中心</h2>
+                </div>
+                <div class="bg-lions-gray p-4 rounded-2xl border border-lions-orange/20 shadow-xl">
+                    <div class="relative w-full h-80 md:h-96 rounded-xl overflow-hidden bg-black">
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full border-0" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.309489240375!2d120.2104883!3d23.0491185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e771092823035%3A0xc34b3e839e944747!2z6Ie6I2XeeS6numAheWci-mamm_rmpIeMheiom-e3tOaIkOOCgQ!5e0!3m2!1szh-TW!2stw!4v1700000000000!5m2!1szh-TW!2stw" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="mt-3 text-right">
+                        <a href="https://maps.google.com/?q=臺南亞太國際棒球訓練中心" target="_blank" rel="noopener noreferrer" class="text-xs text-lions-orange hover:underline">
+                            在 Google Maps 中開啟導航 ↗
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. 祝福留言板 (LocalStorage 永久儲存) -->
+            <section id="comments" class="fade-in-section bg-lions-gray p-6 md:p-8 rounded-2xl border border-lions-orange/20 shadow-2xl">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-2.5 h-8 bg-lions-orange rounded-full"></div>
+                        <h2 class="text-2xl font-bold text-white">給鏞基的引退祝福</h2>
+                    </div>
+                    <span class="text-xs text-gray-400 bg-black/50 px-3 py-1 rounded-full border border-gray-800">
+                        已保存在本機瀏覽器 💾
+                    </span>
+                </div>
+
+                <form id="commentForm" class="space-y-4 mb-8">
+                    <div>
+                        <input type="text" id="nameInput" placeholder="您的名字 / 暱稱" required class="w-full p-3 rounded-lg bg-black/60 border border-gray-700 text-white focus:outline-none focus:border-lions-orange transition">
+                    </div>
+                    <div>
+                        <textarea id="msgInput" rows="3" placeholder="寫下給陳鏞基的祝福留言..." required class="w-full p-3 rounded-lg bg-black/60 border border-gray-700 text-white focus:outline-none focus:border-lions-orange transition"></textarea>
+                    </div>
+                    <button type="submit" class="bg-lions-orange hover:bg-orange-600 text-black font-bold px-6 py-2.5 rounded-lg transition shadow-md">
+                        送出祝福
+                    </button>
+                </form>
+
+                <div id="commentsList" class="space-y-3">
+                    <!-- 留言內容 -->
+                </div>
+            </section>
+
+        </main>
+
+        <!-- 頁尾 -->
+        <footer class="bg-black py-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+            <p>13 Mayaw Ciru ‧ 陳鏞基 引退紀念網頁</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript 動態互動邏輯 -->
+    <script>
+        // --- 1. 背景星光粒子動畫 ---
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedY = Math.random() * 0.5 + 0.1;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.y -= this.speedY;
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.fillStyle = `rgba(243, 112, 33, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // --- 2. 捲動淡入效果 ---
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- 3. 持久化留言板 (LocalStorage) ---
+        const STORAGE_KEY = 'chen_13_comments';
+
+        const defaultComments = [
+            { id: 1, name: '熱血獅迷', msg: '謝謝鏞基帶給我們這麼多感動的瞬間！轟炸基永遠留在我們心裡！', time: '2026/09/20' }
+        ];
+
+        function getStoredComments() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : defaultComments;
+        }
+
+        function saveComments(comments) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(comments));
+        }
+
+        function renderComments() {
+            const comments = getStoredComments();
+            const list = document.getElementById('commentsList');
+            list.innerHTML = '';
+
+            comments.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'p-4 bg-black/50 rounded-lg border-l-4 border-lions-orange flex justify-between items-start gap-3 shadow';
+                div.innerHTML = `
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="font-bold text-lions-orange">${escapeHtml(item.name)}</span>
+                            <span class="text-xs text-gray-500">${item.time || ''}</span>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed">${escapeHtml(item.msg)}</p>
+                    </div>
+                    <button onclick="deleteComment(${item.id})" class="text-xs text-gray-500 hover:text-red-400 transition">刪除</button>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('nameInput').value.trim();
+            const msg = document.getElementById('msgInput').value.trim();
+
+            if (name && msg) {
+                const comments = getStoredComments();
+                const now = new Date();
+                const timeStr = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()}`;
+
+                const newComment = {
+                    id: Date.now(),
+                    name: name,
+                    msg: msg,
+                    time: timeStr
+                };
+
+                comments.unshift(newComment);
+                saveComments(comments);
+                renderComments();
+
+                document.getElementById('nameInput').value = '';
+                document.getElementById('msgInput').value = '';
+            }
+        });
+
+        function deleteComment(id) {
+            let comments = getStoredComments();
+            comments = comments.filter(c => c.id !== id);
+            saveComments(comments);
+            renderComments();
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        renderComments();
+    </script>
+</body>
+</html>
